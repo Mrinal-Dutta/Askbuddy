@@ -1,27 +1,28 @@
-
 from dotenv import load_dotenv
 import os
 import streamlit as st
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 
 load_dotenv()
 
-api_key = os.getenv("GOOGLE_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
 
 if not api_key:
     try:
-        api_key = st.secrets["GOOGLE_API_KEY"]
+        api_key = st.secrets["OPENAI_API_KEY"]
     except Exception:
-        st.error("Google API Key not found!")
+        st.error("OpenRouter API Key not found!")
         st.stop()
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    google_api_key=api_key
+llm = ChatOpenAI(
+    model="openai/gpt-oss-20b",
+    api_key=api_key,
+    base_url="https://openrouter.ai/api/v1",
+    temperature=0
 )
 
 st.title("🤖 AskBuddy - AI QnA Bot")
-st.markdown("My QnA Bot with LangChain and Google Gemini!")
+st.markdown("My QnA Bot with LangChain and OpenRouter!")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
