@@ -1,3 +1,11 @@
-streamlit
-langchain-openai
-python-dotenv
+from dotenv import load_dotenv
+import os
+import streamlit as st
+from langchain_openai import ChatOpenAI
+
+st.set_page_config(
+    page_title="AskBuddy",
+    layout="wide"
+)
+
+load_dotenv()
