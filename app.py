@@ -1,4 +1,3 @@
-
 from dotenv import load_dotenv
 import os
 import streamlit as st
@@ -25,7 +24,7 @@ if not api_key:
 
 # Initialize OpenRouter LLM
 llm = ChatOpenAI(
-    model="openai/gpt-oss-20b",
+    model="openai/gpt-oss-120b",
     api_key=api_key,
     base_url="https://openrouter.ai/api/v1",
     temperature=0
